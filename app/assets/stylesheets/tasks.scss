@@ -1,0 +1,29 @@
+// Place all the styles related to the tasks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding: 0px 10px 0px 10px;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+/*    border: 1px solid #ff0000;*/
+}
+
+.form-row_label {
+    width: 10%;
+}
+
+.form-row_content {
+    width: 90%;
+}
