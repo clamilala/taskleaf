@@ -1,8 +1,8 @@
 <h1>タスクの詳細</h1>
 
-<nav class="navigation"><%= link_to '一覧', tasks_path %></nav>
+<div class="nav justify-content-end"><%= link_to '一覧', tasks_path, class: 'nav-link' %></div>
 
-<table>
+<table class="table table-hover" >
     <tbody>
         <tr>
             <th><%= Task.human_attribute_name(:id) %></th>

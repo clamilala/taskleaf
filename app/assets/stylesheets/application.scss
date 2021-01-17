@@ -61,7 +61,16 @@ h6 {
     align-items: center;
 
     width: 100%;
-    border: 1px solid #ff0000;
+//    border: 1px solid #ff0000;
+}
+
+//Railsでは、エラーメッセージを含むフィールドは自動的にfield_with_errorsクラスを持つdivタグで囲まれます。
+//これを利用して、エラーメッセージをもっと目立たせるようにcssルールを定義しても構いません。
+//https://railsguides.jp/getting_started.html#%E3%83%90%E3%83%AA%E3%83%87%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E8%BF%BD%E5%8A%A0
+.field_with_errors {
+    //field_with_errorsが自動付与されることでレイアウト崩れが発生するため、display: contents; でレイアウト崩れを回避する。
+    display: contents;
+    // もしくは diplay: inline;
 }
 
 /*タブレットレイアウト：px以下*/

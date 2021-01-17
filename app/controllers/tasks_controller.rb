@@ -16,11 +16,15 @@ class TasksController < ApplicationController
 
   #タスクを登録
   def create
-    task = Task.new(task_params)
-    #
-    task.save!
-    #
-    redirect_to tasks_url, notice: "タスク「#{task.name}」を登録しました。"
+    @task = Task.new(task_params)
+    
+    #.save→検証エラーの場合はfalseが返ってくる
+    if @task.save
+      redirect_to @task, notice: "タスク「#{@task.name}」を登録しました。"
+    else
+      #検証エラーの場合、登録画面へ戻す
+      render :new
+    end
   end
 
   def edit
