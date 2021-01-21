@@ -1,6 +1,11 @@
 #ルーティング
 Rails.application.routes.draw do
 
+  namespace :admin do
+    # namespace :admin の中に定義すると、URLに /admin 、ヘルパーメソッドに admin_ がつくようになる
+    resources :users
+  end
+
   root to: 'tasks#index'
   resources :tasks
   #resources :tasks で以下のルートが生成されている
