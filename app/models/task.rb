@@ -10,6 +10,9 @@ class Task < ApplicationRecord
     #検証用メソッドの名前を定義
     validate :validate_name_not_including_commma
 
+    #アソシエーション
+    belongs_to :user
+
     #プライベートメソッド
     private
 

@@ -1,4 +1,9 @@
 class Admin::UsersController < ApplicationController
+  ##フィルタ
+  before_action :require_admin
+
+  ##メソッド
+
   def index
     @users = User.all
   end
@@ -48,11 +53,17 @@ class Admin::UsersController < ApplicationController
     redirect_to admin_users_url, notice: "ユーザー「#{@user.name}」を削除しました。"
   end
 
-  #プライベートメソッド
+  ##プライベートメソッド
   private
   
   def user_params
     #ストロングパラメーター
     params.require(:user).permit(:name, :email, :admin, :password, :password_confirmation)
+  end
+
+  #admin権限を所持しているかどうか
+  #所持していない場合はroot_pathへ戻す
+  def require_admin
+    redirect_to root_path unless current_user.admin?
   end
 end

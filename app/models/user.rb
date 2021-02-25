@@ -5,4 +5,7 @@ class User < ApplicationRecord
     #バリデーション
     validates :name, presence: true
     validates :email, presence: true, uniqueness: true
+
+    #アソシエーション
+    has_many :tasks
 end

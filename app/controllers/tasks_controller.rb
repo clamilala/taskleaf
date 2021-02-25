@@ -1,12 +1,12 @@
 class TasksController < ApplicationController
   #一覧表示
   def index
-    @tasks = Task.all
+    @tasks = current_user.tasks
   end
 
   #詳細表示
   def show
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end
 
   #タスク新規登録画面へ遷移
@@ -16,7 +16,7 @@ class TasksController < ApplicationController
 
   #タスクを登録
   def create
-    @task = Task.new(task_params)
+    @task = current_user.task.new(task_params)
     
     #.save→検証エラーの場合はfalseが返ってくる
     if @task.save
@@ -28,17 +28,17 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end
 
   def update
-    task = Task.find(params[:id])
+    task = current_user.tasks.find(params[:id])
     task.update(task_params)
     redirect_to tasks_url, notice: "タスク「#{task.name}」を更新しました。"
   end
 
   def destroy
-    task = Task.find(params[:id])
+    task = current_user.tasks.find(params[:id])
     task.destroy
     redirect_to tasks_url, notice: "タスク「#{task.name}」を削除しました。"
   end
