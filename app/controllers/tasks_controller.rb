@@ -1,4 +1,8 @@
 class TasksController < ApplicationController
+  ##フィルタ
+  #show,edit,update,destroyメソッド実行前に、set_taskメソッドを実行
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
+
   #一覧表示
   def index
     #降順ソート
@@ -29,26 +33,28 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = current_user.tasks.find(params[:id])
   end
 
   def update
-    task = current_user.tasks.find(params[:id])
     task.update(task_params)
     redirect_to tasks_url, notice: "タスク「#{task.name}」を更新しました。"
   end
 
   def destroy
-    task = current_user.tasks.find(params[:id])
     task.destroy
     redirect_to tasks_url, notice: "タスク「#{task.name}」を削除しました。"
   end
 
-  #プライベートメソッド
+  ##プライベートメソッド
   private
 
   def task_params
     #Strong Parameters
     params.require(:task).permit(:name, :description)
+  end
+
+  #params[:id]のタスクを取得
+  def set_task
+    @task = current_user.tasks.find(params[:id])
   end
 end
