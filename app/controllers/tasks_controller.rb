@@ -1,7 +1,8 @@
 class TasksController < ApplicationController
   #一覧表示
   def index
-    @tasks = current_user.tasks
+    #降順ソート
+    @tasks = current_user.tasks.order(created_at: :desc)
   end
 
   #詳細表示
