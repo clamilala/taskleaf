@@ -10,8 +10,12 @@ class Task < ApplicationRecord
     #検証用メソッドの名前を定義
     validate :validate_name_not_including_commma
 
-    #アソシエーション
+    ##アソシエーション
     belongs_to :user
+
+    ##スコープ
+    #tasks = Task.recent　→　全件を新しい順で取得
+    scope :recent, -> {order(created_at: :desc)}
 
     #プライベートメソッド
     private
