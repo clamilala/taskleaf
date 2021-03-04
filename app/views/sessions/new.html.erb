@@ -4,10 +4,12 @@
     <div class="form-group">
         <%= f.label :email, 'メールアドレス' %>
         <%= f.text_field :email, class: 'form-control', id: 'session_email' %>
+        admin@example.com
     </div>
     <div class="form-group">
         <%= f.label :password, 'パスワード' %>
         <%= f.password_field :password, class: 'form-control', id: 'session_password' %>
+        password
     </div>
     <%= f.submit 'ログインする', class: 'btn btn-primary' %>
 <% end %>
