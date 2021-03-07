@@ -17,6 +17,18 @@ class Task < ApplicationRecord
     #tasks = Task.recent　→　全件を新しい順で取得
     scope :recent, -> {order(created_at: :desc)}
 
+    ##ransack用の設定
+    #検索対象にすることを許可するカラムを指定（デフォルトは全カラムを対象）
+    def self.ransackable_attributes(auth_object = nil)
+        %w[name created_at]
+    end
+
+    #検索対象に含める関連を指定
+    #空配列を返すようにオーバーライドすることで検索条件に意図しない関連を含めないようにすることができる
+    def self.ransackable_associations(auth_object = nil)
+        []
+    end
+
     #プライベートメソッド
     private
 

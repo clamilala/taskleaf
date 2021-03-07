@@ -1,5 +1,27 @@
 <h1>タスク一覧</h1>
 
+<%= search_form_for @q, class: 'mb-5' do |f| %>
+    <div class="form-group row">
+        <% # name_cont はransackのマッチャーという機能 %>
+        <% # cont→containsの略、name_contはnameに検索文字列を含むものを検索してくれる %>
+        <% # マッチャーのreadme: https://github.com/activerecord-hackery/ransack#search-machers %>
+        <%= f.label :name_cont, "名称", class: 'col-sm-2 col-form-label' %>
+        <div class="col-sm-10">
+            <%= f.search_field :name_cont, class: 'form-control' %>
+        </div>
+    </div>
+    <div class="form-group row">
+        <% # gteq→greater than or equalの略、入力値以上の物を取得する %>
+        <%= f.label :created_at_gteq, '登録日時', class: 'col-sm-2 col-form-label' %>
+        <div class="col-md-10">
+            <%= f.search_field :created_at_gteq, class: 'form-control' %>
+        </div>
+    </div>
+    <div class="form-group">
+        <%= f.submit class: 'btn btn-outline-primary' %>
+    </div>
+<% end %>
+
 <%= link_to '新規登録', new_task_path, class: 'btn btn-primary' %>
 
 <table class="table table-hover">
