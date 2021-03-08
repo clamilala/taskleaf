@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   #一覧表示
   def index
     @q = current_user.tasks.ransack(params[:q])
-    @tasks = @q.result(distinct: true).recent
+    @tasks = @q.result(distinct: true)
 
     #降順ソート
     #@tasks = current_user.tasks.order(created_at: :desc)
